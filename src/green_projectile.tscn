@@ -1,0 +1,39 @@
+[gd_scene load_steps=5 format=3 uid="uid://j7bseaqsqnnk"]
+
+[ext_resource type="Texture2D" uid="uid://cjaygkpxqbp64" path="res://res/green_projectile.png" id="1_716u8"]
+[ext_resource type="Script" path="res://src/green_projectile.gd" id="1_ld4vw"]
+
+[sub_resource type="Gradient" id="Gradient_40abl"]
+offsets = PackedFloat32Array(0.0883534, 0.983936, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0.810086, 0.810086, 0.810086, 1, 1, 1, 1, 0)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3nr48"]
+size = Vector2(100, 50)
+
+[node name="GreenProjectile" type="Area2D"]
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("1_ld4vw")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_716u8")
+
+[node name="LaserParticles" type="CPUParticles2D" parent="."]
+amount = 4
+lifetime = 0.2
+texture = ExtResource("1_716u8")
+emission_shape = 1
+emission_sphere_radius = 100.0
+direction = Vector2(0, -1)
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 200.0
+initial_velocity_max = 400.0
+tangential_accel_max = 11.88
+scale_amount_min = 0.25
+color_ramp = SubResource("Gradient_40abl")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_3nr48")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

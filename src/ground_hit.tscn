@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://0mu2l2avrjal"]
+
+[ext_resource type="Texture2D" uid="uid://drrkc3olvoixl" path="res://res/ground_hit.png" id="1_rx134"]
+[ext_resource type="Script" path="res://src/ground_hit.gd" id="2_71m4k"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_spw2g"]
+size = Vector2(473, 67)
+
+[node name="GroundHit" type="Sprite2D"]
+texture = ExtResource("1_rx134")
+script = ExtResource("2_71m4k")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-6.5, -23.5)
+shape = SubResource("RectangleShape2D_spw2g")

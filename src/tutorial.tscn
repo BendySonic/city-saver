@@ -1,0 +1,273 @@
+[gd_scene load_steps=21 format=3 uid="uid://b8wadk7qhiy7p"]
+
+[ext_resource type="Script" path="res://src/tutorial.gd" id="1_pc1qc"]
+[ext_resource type="Texture2D" uid="uid://cke0d0mhqctke" path="res://res/tutorial_zone.png" id="1_xsctl"]
+[ext_resource type="PackedScene" uid="uid://d3hjd5pcfas6y" path="res://src/player.tscn" id="3_pxqro"]
+[ext_resource type="Texture2D" uid="uid://dpjwd503uaanq" path="res://res/one.png" id="4_r1ym8"]
+[ext_resource type="Texture2D" uid="uid://cc001c2ahab50" path="res://res/two.png" id="5_r51qh"]
+[ext_resource type="Texture2D" uid="uid://d1jeqbuyglnwm" path="res://res/three.png" id="6_7hk3s"]
+[ext_resource type="Texture2D" uid="uid://c1hyn0xw63j8o" path="res://res/ultimate_icon.png" id="7_gc6fr"]
+[ext_resource type="Texture2D" uid="uid://bvnhqwfqhqymt" path="res://res/heart.png" id="8_83pmk"]
+[ext_resource type="AudioStream" uid="uid://dsut5sygpogkw" path="res://res/music/Calm-before-storm.mp3" id="9_ig1yy"]
+[ext_resource type="Texture2D" uid="uid://buw36vguasf21" path="res://res/deco2.png" id="10_keye5"]
+[ext_resource type="Texture2D" uid="uid://c78vxqvynrbrr" path="res://res/deco1.png" id="11_knjgr"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_x4ieq"]
+font_size = 50
+font_color = Color(0.60933, 0.60933, 0.60933, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_qbegu"]
+font_size = 40
+font_color = Color(0.691357, 0.691357, 0.691357, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7nc0p"]
+size = Vector2(2200, 150)
+
+[sub_resource type="LabelSettings" id="LabelSettings_h7hww"]
+font_size = 54
+font_color = Color(0.525101, 0.525101, 0.525101, 1)
+outline_size = 2
+outline_color = Color(0.52549, 0.52549, 0.52549, 1)
+
+[sub_resource type="Animation" id="Animation_iriu8"]
+resource_name = "white_on"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer2/PanelContainer:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0333333, 1.43333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_7087c"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer2/PanelContainer:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_gefmm"]
+resource_name = "white_off"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer2/PanelContainer:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0333333, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xaimg"]
+_data = {
+"RESET": SubResource("Animation_7087c"),
+"white_off": SubResource("Animation_gefmm"),
+"white_on": SubResource("Animation_iriu8")
+}
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2edjp"]
+bg_color = Color(1, 1, 1, 1)
+
+[node name="Tutorial" type="Node2D" node_paths=PackedStringArray("player")]
+script = ExtResource("1_pc1qc")
+player = NodePath("Player")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(964, 546)
+zoom = Vector2(1.2, 1.2)
+
+[node name="TutorialZone" type="Sprite2D" parent="."]
+texture = ExtResource("1_xsctl")
+centered = false
+
+[node name="CanvasLayer3" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer3"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="CanvasLayer3/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Welcome to City Saver!
+Your goal is to protect the inhabitants of a small town from a monster."
+label_settings = SubResource("LabelSettings_x4ieq")
+horizontal_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer3/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="Label2" type="Label" parent="CanvasLayer3/Control/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+text = "Press SPACE to continue"
+label_settings = SubResource("LabelSettings_qbegu")
+horizontal_alignment = 1
+
+[node name="Player" parent="." instance=ExtResource("3_pxqro")]
+position = Vector2(506, 498)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." groups=["floor"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(976, 1010)
+shape = SubResource("RectangleShape2D_7nc0p")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer2" type="MarginContainer" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -411.0
+offset_bottom = 171.0
+grow_horizontal = 0
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 30
+
+[node name="HBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control/MarginContainer2"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Control/MarginContainer2/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="One" type="TextureProgressBar" parent="CanvasLayer/Control/MarginContainer2/HBoxContainer/HBoxContainer"]
+layout_mode = 2
+max_value = 10.0
+value = 10.0
+fill_mode = 4
+texture_under = ExtResource("4_r1ym8")
+texture_progress = ExtResource("4_r1ym8")
+tint_under = Color(0.695503, 0.695503, 0.695503, 0.882353)
+
+[node name="Two" type="TextureProgressBar" parent="CanvasLayer/Control/MarginContainer2/HBoxContainer/HBoxContainer"]
+layout_mode = 2
+max_value = 10.0
+value = 10.0
+fill_mode = 4
+texture_under = ExtResource("5_r51qh")
+texture_progress = ExtResource("5_r51qh")
+tint_under = Color(0.695503, 0.695503, 0.695503, 0.882353)
+
+[node name="Three" type="TextureProgressBar" parent="CanvasLayer/Control/MarginContainer2/HBoxContainer/HBoxContainer"]
+layout_mode = 2
+max_value = 10.0
+value = 10.0
+fill_mode = 4
+texture_under = ExtResource("6_7hk3s")
+texture_progress = ExtResource("6_7hk3s")
+tint_under = Color(0.695503, 0.695503, 0.695503, 0.882353)
+
+[node name="Five" type="TextureProgressBar" parent="CanvasLayer/Control/MarginContainer2/HBoxContainer/HBoxContainer"]
+layout_mode = 2
+max_value = 40.0
+fill_mode = 4
+texture_under = ExtResource("7_gc6fr")
+texture_progress = ExtResource("7_gc6fr")
+tint_under = Color(0.695503, 0.695503, 0.695503, 0.882353)
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="CanvasLayer/Control/MarginContainer2/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+alignment = 2
+
+[node name="PlayerHealth" type="Label" parent="CanvasLayer/Control/MarginContainer2/HBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "3
+"
+label_settings = SubResource("LabelSettings_h7hww")
+
+[node name="TextureRect2" type="TextureRect" parent="CanvasLayer/Control/MarginContainer2/HBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("8_83pmk")
+stretch_mode = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_xaimg")
+}
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_ig1yy")
+volume_db = -5.0
+autoplay = true
+parameters/looping = true
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="."]
+
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer2"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_2edjp")
+
+[node name="Deco2" type="Sprite2D" parent="."]
+position = Vector2(384.5, 747)
+texture = ExtResource("10_keye5")
+
+[node name="Deco3" type="Sprite2D" parent="."]
+position = Vector2(1478, 747)
+texture = ExtResource("10_keye5")
+
+[node name="Deco1" type="Sprite2D" parent="."]
+position = Vector2(524.5, 900)
+texture = ExtResource("11_knjgr")
+
+[node name="Deco4" type="Sprite2D" parent="."]
+position = Vector2(1315, 900)
+texture = ExtResource("11_knjgr")
